@@ -4,8 +4,8 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 const val SECOND = 1000L
-const val MINUTES = SECOND *60
-const val HOUR = MINUTES * 60
+const val MINUTE = SECOND *60
+const val HOUR = MINUTE * 60
 const val DAY = HOUR * 24
 
 fun Date.format(pattern: String = "HH:mm:ss dd.MM.yy"): String{
@@ -19,7 +19,7 @@ fun Date.add(value: Int, units:TimeUnits = TimeUnits.SECOND): Date{
 
     time += when(units){
         TimeUnits.SECOND -> value * SECOND
-        TimeUnits.MINUTES -> value * MINUTES
+        TimeUnits.MINUTE -> value * MINUTE
         TimeUnits.HOUR -> value * HOUR
         TimeUnits.DAY -> value * DAY
     }
@@ -33,9 +33,9 @@ fun Date.add(value: Int, units:TimeUnits = TimeUnits.SECOND): Date{
 
      when (true) {
          dif < 59 * SECOND -> return "только что"
-         dif < 2 * MINUTES -> return  "минуту назад"
-         dif < 60 * MINUTES -> {
-             var i = (dif / MINUTES).toInt()
+         dif < 2 * MINUTE -> return  "минуту назад"
+         dif < 60 * MINUTE -> {
+             var i = (dif / MINUTE).toInt()
              when (true) {
                  i in 2..4 -> return "$i минуты назад"
                  i in 5 ..59 -> return "$i минут назад"
@@ -71,7 +71,7 @@ fun Date.add(value: Int, units:TimeUnits = TimeUnits.SECOND): Date{
 
 enum class TimeUnits{
     SECOND,
-    MINUTES,
+    MINUTE,
     HOUR,
     DAY
 }
